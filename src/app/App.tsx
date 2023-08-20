@@ -1,10 +1,17 @@
 import React from 'react';
-import {EmployeesList} from '../components/employeesList';
+import {EmployeesList} from '../components/employeesList/employeesList';
+import classes from './App.module.css'
+import {Button} from "@mui/material";
+import {EmployeeMenu} from "../components/employeeMenu/employeeMenu";
 
 
 function App() {
     return (
-        <EmployeesList/>
+        <div className={classes.mainAppBlock}>
+            <EmployeesList/>
+            <EmployeeMenu/>
+        </div>
+
     );
 }
 
