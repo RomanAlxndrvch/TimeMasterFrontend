@@ -1,7 +1,6 @@
 import React from "react";
 import classes from '../EmployeesList/EmployeesList.module.css'
-import {Button, List} from "@mui/material";
-import {ListItem} from "../ListItem/ListItem";
+import {Button, List, ListItem} from "@mui/material";
 
 
 export const EmployeesList = () => {
