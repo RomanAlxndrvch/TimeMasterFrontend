@@ -1,11 +1,10 @@
 import React from "react";
-import classes from './employeeMenu.module.css'
+import classes from './EmployeeMenu.module.css'
 
 export const EmployeeMenu = () => {
     return (
         <div className={classes.mainBlock}>
-            qqqqqqQQQQQqqqq
-
+            Employee Menu
         </div>
     )
 }
