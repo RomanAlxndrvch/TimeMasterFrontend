@@ -4,15 +4,14 @@ import {Button, List, ListItem} from "@mui/material";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {fetchAllEmployees} from "components/EmployeesList/employess-reducer";
 
-
 export const EmployeesList = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(fetchAllEmployees())
-    }, [])
+    }, [dispatch])
 
-    
+
     return (
         <div className={classes.mainBlock}>
             <List component="nav" aria-label="employees list">
