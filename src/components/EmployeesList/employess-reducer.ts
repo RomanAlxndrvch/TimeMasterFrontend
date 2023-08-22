@@ -1,13 +1,19 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AppThunk} from "app/store";
-import {allEmployeesAPI} from "api/timeMaster-api";
+import {allEmployeesAPI, EmployeeType} from "api/timeMaster-api";
 
 
 //rtk
 const slice = createSlice({
     name: 'employees',
-    initialState: {},
-    reducers: {}
+    initialState: {
+        allEmployees: []
+    },
+    reducers: {
+        fetchAllEmployees: (state: { allEmployees: EmployeeType[] }, action: PayloadAction<EmployeeType[]>) => {
+            state.allEmployees = action.payload
+        }
+    }
 })
 
 
@@ -20,5 +26,6 @@ export const employeesActions = slice.actions
 export const fetchAllEmployees = (): AppThunk => (dispatch) => {
     allEmployeesAPI.getEmployeesList().then((res) => {
         console.log(res)
+        dispatch(employeesActions.fetchAllEmployees(res.data.data.allEmployees))
     })
 }
