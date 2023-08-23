@@ -25,7 +25,6 @@ export const employeesActions = slice.actions
 //thunk
 export const fetchAllEmployees = (): AppThunk => (dispatch) => {
     allEmployeesAPI.getEmployeesList().then((res) => {
-        console.log(res)
         dispatch(employeesActions.fetchAllEmployees(res.data.data.allEmployees))
     })
 }
