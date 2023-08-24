@@ -7,17 +7,9 @@ const instance = axios.create({
 
 export const allEmployeesAPI = {
     getEmployeesList() {
-        return instance.get<ResponseType<{ allEmployees: EmployeeType[] }>>('employees')
+        return instance.get<ResponseType<{ allEmployees: EmployeeRespondType[] }>>('employees')
     }
 }
-
-/*
-export const allEmployeesAPI = {
-    getEmployeesList() {
-        return instance.get<AxiosResponse<ResponseType<{ allEmployees: EmployeeType[] }>>>('employees')
-    }
-}
-*/
 
 
 export type ResponseType<D = {}> = {
@@ -25,7 +17,7 @@ export type ResponseType<D = {}> = {
     data: D
 }
 
-export type EmployeeType = {
+export type EmployeeRespondType = {
     totalAmountHoursPerMonth: number,
     hoursPerDay: number,
     workingDays: [Date],

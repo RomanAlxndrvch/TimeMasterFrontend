@@ -5,8 +5,9 @@ import {useAppDispatch} from "hooks/useAppDispatch";
 import {fetchAllEmployees} from "components/EmployeesList/employess-reducer";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "app/store";
-import {EmployeeType} from "api/timeMaster-api";
+
 import {EmployeesListItem} from "components/EmployeesList/ListItem/EmployeesListItem";
+import {EmployeeRespondType} from "api/timeMaster-api";
 
 
 export const EmployeesList = () => {
@@ -16,13 +17,16 @@ export const EmployeesList = () => {
         dispatch(fetchAllEmployees())
     }, [dispatch])
 
-    const employeesList = useSelector<AppRootStateType, EmployeeType[]>(state => state.employees.allEmployees)
+
+    const employeesList = useSelector<AppRootStateType, EmployeeRespondType[]>(state => state.employees.allEmployees)
+
+    console.log(employeesList)
 
     return (
         <div className={classes.mainBlock}>
             <List component="nav" aria-label="employees list">
                 {employeesList.map((el) => {
-                    return <EmployeesListItem name={el.name} key={el._id}/>
+                    return <EmployeesListItem name={el.name} id={el._id} key={el._id}/>
                 })}
             </List>
             <Button variant={"contained"} className={classes.listButton}>FOR ADMIN</Button>
