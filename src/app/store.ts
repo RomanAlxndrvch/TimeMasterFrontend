@@ -1,5 +1,5 @@
 import {AnyAction, combineReducers, configureStore, ThunkAction, ThunkDispatch} from "@reduxjs/toolkit";
-import {employeesReducer} from "components/EmployeesList/employess-reducer";
+import {employeesReducer} from "components/EmployeesList/employees-reducer";
 import {appReducer} from "app/app-reducer";
 
 

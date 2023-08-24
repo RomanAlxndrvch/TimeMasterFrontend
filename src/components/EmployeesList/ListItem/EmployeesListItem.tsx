@@ -1,7 +1,7 @@
 import React from "react";
 import {Divider, ListItemButton, ListItemText} from "@mui/material";
 import {useAppDispatch} from "hooks/useAppDispatch";
-import {appActions} from "app/app-reducer";
+import {appActions, fetchSelectedEmployee} from "app/app-reducer";
 
 type ListItemPropsType = {
     name: string,
@@ -11,7 +11,9 @@ type ListItemPropsType = {
 export const EmployeesListItem = (props: ListItemPropsType) => {
     const dispatch = useAppDispatch()
 
-    const setSelectedEmployee = () => dispatch(appActions.selectedEmployee({id: props.id}))
+    const setSelectedEmployee = () => {
+        dispatch(fetchSelectedEmployee(props.id))
+    }
 
     return (
         <div>
