@@ -1,4 +1,6 @@
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
+import {EmployeeRespondType} from "utils/types";
+import {ResponseType} from "utils/types"
 
 const instance = axios.create({
     baseURL: 'http://localhost:8000/api/employees',
@@ -15,16 +17,3 @@ export const allEmployeesAPI = {
 }
 
 
-export type ResponseType<D = {}> = {
-    status: 'success' | 'error',
-    data: D
-}
-
-export type EmployeeRespondType = {
-    totalAmountHoursPerMonth: number,
-    hoursPerDay: number,
-    workingDays: [Date],
-    _id: string,
-    name: string,
-    password: string
-}

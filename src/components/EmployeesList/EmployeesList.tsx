@@ -5,9 +5,8 @@ import {useAppDispatch} from "hooks/useAppDispatch";
 import {fetchAllEmployees} from "components/EmployeesList/employees-reducer";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "app/store";
-
 import {EmployeesListItem} from "components/EmployeesList/ListItem/EmployeesListItem";
-import {EmployeeRespondType} from "api/timeMaster-api";
+import {EmployeeRespondType} from "utils/types";
 
 
 export const EmployeesList = () => {
@@ -28,6 +27,7 @@ export const EmployeesList = () => {
                 })}
             </List>
             <Button variant={"contained"} className={classes.listButton}>FOR ADMIN</Button>
+
         </div>
     )
 }

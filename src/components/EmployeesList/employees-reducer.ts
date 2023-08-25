@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AppThunk} from "app/store";
-import {allEmployeesAPI, EmployeeRespondType} from "api/timeMaster-api";
+import {allEmployeesAPI} from "api/timeMaster-api";
+import {EmployeeRespondType} from "utils/types";
 
 
 //rtk
@@ -10,8 +11,10 @@ const slice = createSlice({
         allEmployees: []
     },
     reducers: {
-        fetchAllEmployees: (state: { allEmployees: EmployeeType[] }, action: PayloadAction<EmployeeRespondType[]>) => {
-            state.allEmployees = action.payload.map(el => ({...el, isLoggedIn: false}))
+        fetchAllEmployees: (state: {
+            allEmployees: EmployeeRespondType[]
+        }, action: PayloadAction<EmployeeRespondType[]>) => {
+            state.allEmployees = action.payload
         }
     }
 })
@@ -29,6 +32,3 @@ export const fetchAllEmployees = (): AppThunk => (dispatch) => {
     })
 }
 
-//types
-export type EmployeeType = EmployeeRespondType &
-    { isLoggedIn: boolean }
