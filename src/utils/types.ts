@@ -18,5 +18,5 @@ export type EmployeeType = EmployeeRespondType &
 
 //React hook form type
 export type IFormInput = {
-    password: number | string
+    password: string | undefined
 }
