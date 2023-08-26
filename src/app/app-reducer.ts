@@ -13,6 +13,9 @@ const slice = createSlice({
     reducers: {
         selectedEmployee: (state, action: PayloadAction<{ employee: EmployeeRespondType }>) => {
             state.selectedEmployee = {...action.payload.employee, isLoggedIn: false}
+        },
+        changeLoginInStatus: (state, action: PayloadAction<{ isLoginIn: boolean }>) => {
+            state.selectedEmployee.isLoggedIn = action.payload.isLoginIn
         }
     }
 })
