@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import {LoginPassword} from "components/LoginPassword/LoginPassword";
 import {useSelector} from "react-redux";
@@ -8,10 +8,9 @@ import {Menu} from "components/Menu/Menu";
 import {EmployeeType, IFormInput} from "utils/types";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {appActions} from "app/app-reducer";
-import {logDOM} from "@testing-library/react";
 
 
-export const EmployeeMainMenu = () => {
+const EmployeeMainMenuBM = () => {
     //hooks
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
@@ -25,11 +24,13 @@ export const EmployeeMainMenu = () => {
     }, [selectedEmployee, navigate])
 
 
-    const checkPassword = (password: string | undefined) => {
+    const checkPassword = useCallback((password: string | undefined) => {
+        console.log(password)
+        console.log(selectedEmployee.password)
         if (password === selectedEmployee.password.toString()) {
             dispatch(appActions.changeLoginInStatus({isLoginIn: true}))
         }
-    }
+    }, [useAppDispatch, selectedEmployee.password])
 
     return (
         <div>
@@ -41,3 +42,4 @@ export const EmployeeMainMenu = () => {
         </div>
     )
 }
+export const EmployeeMainMenu = React.memo(EmployeeMainMenuBM)

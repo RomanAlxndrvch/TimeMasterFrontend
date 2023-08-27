@@ -11,7 +11,7 @@ type LoginPasswordPropsType = {
 }
 
 
-export const LoginPassword = (props: LoginPasswordPropsType) => {
+const LoginPasswordBM = (props: LoginPasswordPropsType) => {
 
     const schema = yup.object({
         password: yup.string().min(4)
@@ -43,14 +43,16 @@ export const LoginPassword = (props: LoginPasswordPropsType) => {
                         {...field}
                         label={errors.password?.message ? 'Password to short' : 'Password'}
                         error={!!errors.password?.message}
-                        variant="standard" type={'password'}
+                        variant="standard"
+                        type={'password'}
+                        inputMode={"numeric"}
                         className={classes.input}/>}
                     name="password"
                     control={control}
                     defaultValue=''
                 />
 
-                <Button className={classes.btn} type={"submit"} variant="contained">Contained</Button>
+                <Button className={classes.btn} type={"submit"} variant="contained">Log In</Button>
 
             </form>
 
@@ -59,3 +61,6 @@ export const LoginPassword = (props: LoginPasswordPropsType) => {
 
     )
 }
+
+
+export const LoginPassword = React.memo(LoginPasswordBM)

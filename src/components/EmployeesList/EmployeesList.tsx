@@ -9,8 +9,7 @@ import {EmployeesListItem} from "components/EmployeesList/ListItem/EmployeesList
 import {EmployeeRespondType} from "utils/types";
 
 
-export const EmployeesList = () => {
-
+const EmployeesListBM = () => {
     const dispatch = useAppDispatch()
     useEffect(() => {
         dispatch(fetchAllEmployees())
@@ -18,6 +17,7 @@ export const EmployeesList = () => {
 
 
     const employeesList = useSelector<AppRootStateType, EmployeeRespondType[]>(state => state.employees.allEmployees)
+    console.log(employeesList)
 
     return (
         <div className={classes.mainBlock}>
@@ -31,3 +31,5 @@ export const EmployeesList = () => {
         </div>
     )
 }
+
+export const EmployeesList = React.memo(EmployeesListBM)

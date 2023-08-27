@@ -8,7 +8,7 @@ type ListItemPropsType = {
     id: string
 }
 
-export const EmployeesListItem = (props: ListItemPropsType) => {
+const EmployeesListItemBM = (props: ListItemPropsType) => {
     const dispatch = useAppDispatch()
 
     const setSelectedEmployee = () => {
@@ -25,3 +25,5 @@ export const EmployeesListItem = (props: ListItemPropsType) => {
 
     )
 }
+
+export const EmployeesListItem = React.memo(EmployeesListItemBM)
