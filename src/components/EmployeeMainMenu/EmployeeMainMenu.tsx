@@ -8,6 +8,7 @@ import {Menu} from "components/Menu/Menu";
 import {EmployeeType, IFormInput} from "utils/types";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {appActions} from "app/app-reducer";
+import {employeesActions} from "components/EmployeesList/employees-reducer";
 
 
 const EmployeeMainMenuBM = () => {
@@ -16,7 +17,7 @@ const EmployeeMainMenuBM = () => {
     const dispatch = useAppDispatch()
 
     //Data from state
-    const selectedEmployee = useSelector<AppRootStateType, EmployeeType>(state => state.app.selectedEmployee)
+    const selectedEmployee = useSelector<AppRootStateType, EmployeeType>(state => state.employees.selectedEmployee)
 
     // Logic
     useEffect(() => {
@@ -28,7 +29,7 @@ const EmployeeMainMenuBM = () => {
         console.log(password)
         console.log(selectedEmployee.password)
         if (password === selectedEmployee.password.toString()) {
-            dispatch(appActions.changeLoginInStatus({isLoginIn: true}))
+            dispatch(employeesActions.changeLoginInStatus({isLoginIn: true}))
         }
     }, [useAppDispatch, selectedEmployee.password])
 

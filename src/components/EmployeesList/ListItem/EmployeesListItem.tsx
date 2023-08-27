@@ -1,7 +1,8 @@
 import React from "react";
 import {Divider, ListItemButton, ListItemText} from "@mui/material";
 import {useAppDispatch} from "hooks/useAppDispatch";
-import {fetchSelectedEmployee} from "app/app-reducer";
+import {fetchSelectedEmployee} from "components/EmployeesList/employees-reducer";
+
 
 type ListItemPropsType = {
     name: string,

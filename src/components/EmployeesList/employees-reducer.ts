@@ -1,20 +1,28 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AppThunk} from "app/store";
 import {allEmployeesAPI} from "api/timeMaster-api";
-import {EmployeeRespondType} from "utils/types";
+import {EmployeeRespondType, EmployeeType} from "utils/types";
+import {appActions} from "app/app-reducer";
 
 
 //rtk
 const slice = createSlice({
     name: 'employees',
     initialState: {
-        allEmployees: []
+        allEmployees: [],
+        selectedEmployee: {} as EmployeeType
     },
     reducers: {
         fetchAllEmployees: (state: {
             allEmployees: EmployeeRespondType[]
         }, action: PayloadAction<EmployeeRespondType[]>) => {
             state.allEmployees = action.payload
+        },
+        selectedEmployee: (state, action: PayloadAction<{ employee: EmployeeRespondType }>) => {
+            state.selectedEmployee = {...action.payload.employee, isLoggedIn: false}
+        },
+        changeLoginInStatus: (state, action: PayloadAction<{ isLoginIn: boolean }>) => {
+            state.selectedEmployee.isLoggedIn = action.payload.isLoginIn
         }
     }
 })
@@ -32,3 +40,13 @@ export const fetchAllEmployees = (): AppThunk => (dispatch) => {
     })
 }
 
+export const fetchSelectedEmployee = (id: string): AppThunk => async (dispatch) => {
+    try {
+        const res = await allEmployeesAPI.getEmployeeById(id)
+        dispatch(employeesActions.selectedEmployee(res.data.data))
+    } catch (e) {
+        console.log(e)
+    }
+
+
+}
