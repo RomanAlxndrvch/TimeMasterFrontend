@@ -6,12 +6,15 @@ import * as yup from "yup"
 import classes from "./LoginPassword.module.css";
 import {yupResolver} from "@hookform/resolvers/yup";
 
+
 type LoginPasswordPropsType = {
     onSubmit: (e: string | undefined) => void
 }
 
 
 const LoginPasswordBM = (props: LoginPasswordPropsType) => {
+
+    console.log('password')
 
     const schema = yup.object({
         password: yup.string().min(4)

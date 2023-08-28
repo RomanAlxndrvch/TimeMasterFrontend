@@ -1,8 +1,6 @@
 import React, {useEffect} from "react";
 import classes from '../EmployeesList/EmployeesList.module.css'
 import {Button, List} from "@mui/material";
-import {useAppDispatch} from "hooks/useAppDispatch";
-import {fetchAllEmployees} from "components/EmployeesList/employees-reducer";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "app/store";
 import {EmployeesListItem} from "components/EmployeesList/ListItem/EmployeesListItem";
@@ -10,14 +8,10 @@ import {EmployeeRespondType} from "utils/types";
 
 
 const EmployeesListBM = () => {
-    const dispatch = useAppDispatch()
-    useEffect(() => {
-        dispatch(fetchAllEmployees())
-    }, [dispatch])
 
 
     const employeesList = useSelector<AppRootStateType, EmployeeRespondType[]>(state => state.employees.allEmployees)
-    console.log(employeesList)
+  
 
     return (
         <div className={classes.mainBlock}>

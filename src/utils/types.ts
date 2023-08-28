@@ -9,7 +9,7 @@ export type EmployeeRespondType = {
     workingDays: [Date],
     _id: string,
     name: string,
-    password: string
+    password: number
 }
 
 export type EmployeeType = EmployeeRespondType &

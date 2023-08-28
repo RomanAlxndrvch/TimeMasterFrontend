@@ -1,46 +1,48 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {memo, useCallback, useEffect, useState} from "react";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import {LoginPassword} from "components/LoginPassword/LoginPassword";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "app/store";
 
 import {Menu} from "components/Menu/Menu";
-import {EmployeeType, IFormInput} from "utils/types";
+import {EmployeeRespondType, EmployeeType, IFormInput} from "utils/types";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {appActions} from "app/app-reducer";
 import {employeesActions} from "components/EmployeesList/employees-reducer";
 
 
-const EmployeeMainMenuBM = () => {
-    //hooks
-    const navigate = useNavigate()
-    const dispatch = useAppDispatch()
+export const EmployeeMainMenu = memo(function () {
+        console.log('MainMenu')
 
-    //Data from state
-    const selectedEmployee = useSelector<AppRootStateType, EmployeeType>(state => state.employees.selectedEmployee)
+        const navigate = useNavigate()
+        const dispatch = useAppDispatch()
 
-    // Logic
-    useEffect(() => {
-        selectedEmployee.isLoggedIn ? navigate('/employee-menu') : navigate('/employee-password')
-    }, [selectedEmployee, navigate])
+        /*   //Data from state
+           const isEmployeeBeenSelected = useSelector<AppRootStateType, boolean>(state => state.app.isEmployeeSelected)
+           const empPassword = useSelector<AppRootStateType, number>(state => state.employees.selectedEmployee.password)
+           const selectedEmployee = useSelector<AppRootStateType, EmployeeType>((state) => state.employees.selectedEmployee)
+           console.log(selectedEmployee)
+           //hooks
+           // Logic
+           useEffect(() => {
+               selectedEmployee.isLoggedIn ? navigate('/employee-menu') : navigate('/employee-password')
+           }, [selectedEmployee.isLoggedIn])
 
+           const checkPassword = useCallback((password: string | undefined) => {
+               if (password === empPassword.toString()) {
+                   dispatch(employeesActions.changeLoginInStatus({isLoginIn: true}))
+               }
+           }, [isEmployeeBeenSelected, selectedEmployee.isLoggedIn])*/
 
-    const checkPassword = useCallback((password: string | undefined) => {
-        console.log(password)
-        console.log(selectedEmployee.password)
-        if (password === selectedEmployee.password.toString()) {
-            dispatch(employeesActions.changeLoginInStatus({isLoginIn: true}))
-        }
-    }, [useAppDispatch, selectedEmployee.password])
-
-    return (
-        <div>
-            <Routes>
-                <Route path={'/'} element={<div>Select one</div>}/>
-                <Route path={'/employee-menu'} element={<Menu/>}/>
-                <Route path={'/employee-password'} element={<LoginPassword onSubmit={checkPassword}/>}/>
-            </Routes>
-        </div>
-    )
-}
-export const EmployeeMainMenu = React.memo(EmployeeMainMenuBM)
+        return (
+            <div>
+                <Routes>
+                    <Route path={'/'} element={<div>Select one</div>}/>
+                    <Route path={'/employee-menu'} element={<Menu/>}/>
+                    <Route path={'/employee-password'} element={<LoginPassword onSubmit={() => {
+                    }}/>}/>
+                </Routes>
+            </div>
+        )
+    }
+)

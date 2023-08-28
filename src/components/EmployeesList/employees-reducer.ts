@@ -35,8 +35,11 @@ export const employeesActions = slice.actions
 
 //thunk
 export const fetchAllEmployees = (): AppThunk => (dispatch) => {
+    dispatch(appActions.changeAppInitializedStatus({status: false}))
+
     allEmployeesAPI.getEmployeesList().then((res) => {
         dispatch(employeesActions.fetchAllEmployees(res.data.data.allEmployees))
+        dispatch(appActions.changeAppInitializedStatus({status: true}))
     })
 }
 
@@ -44,6 +47,7 @@ export const fetchSelectedEmployee = (id: string): AppThunk => async (dispatch) 
     try {
         const res = await allEmployeesAPI.getEmployeeById(id)
         dispatch(employeesActions.selectedEmployee(res.data.data))
+        dispatch(appActions.changeIsEmployeeBeenSelected({status: true}))
     } catch (e) {
         console.log(e)
     }
