@@ -2,6 +2,7 @@ import React from "react";
 import {Divider, ListItemButton, ListItemText} from "@mui/material";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {fetchSelectedEmployee} from "components/EmployeesList/employees-reducer";
+import {useNavigate} from "react-router-dom";
 
 
 type ListItemPropsType = {
@@ -11,9 +12,11 @@ type ListItemPropsType = {
 
 const EmployeesListItemBM = (props: ListItemPropsType) => {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     const setSelectedEmployee = () => {
         dispatch(fetchSelectedEmployee(props.id))
+        navigate('/')
     }
 
     return (
