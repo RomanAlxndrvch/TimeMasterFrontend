@@ -1,9 +1,8 @@
 import React from "react";
 
-const MenuBM = () => {
+export const Menu = React.memo((function () {
+    console.log('Menu')
     return (
         <div>MainMenu</div>
     )
-}
-
-export const Menu = React.memo(MenuBM)
+}))

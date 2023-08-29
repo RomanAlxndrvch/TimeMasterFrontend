@@ -35,7 +35,7 @@ export const employeesActions = slice.actions
 
 //thunk
 export const fetchAllEmployees = (): AppThunk => (dispatch) => {
-    dispatch(appActions.changeAppInitializedStatus({status: false}))
+    //dispatch(appActions.changeAppInitializedStatus({status: false}))
 
     allEmployeesAPI.getEmployeesList().then((res) => {
         dispatch(employeesActions.fetchAllEmployees(res.data.data.allEmployees))

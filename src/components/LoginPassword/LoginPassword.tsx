@@ -12,7 +12,7 @@ type LoginPasswordPropsType = {
 }
 
 
-const LoginPasswordBM = (props: LoginPasswordPropsType) => {
+export const LoginPassword = React.memo(function (props: LoginPasswordPropsType) {
 
     console.log('password')
 
@@ -63,7 +63,4 @@ const LoginPasswordBM = (props: LoginPasswordPropsType) => {
 
 
     )
-}
-
-
-export const LoginPassword = React.memo(LoginPasswordBM)
+})

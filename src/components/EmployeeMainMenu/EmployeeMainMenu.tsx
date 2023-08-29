@@ -17,27 +17,14 @@ export const EmployeeMainMenu = memo(function () {
         const navigate = useNavigate()
         const dispatch = useAppDispatch()
 
-        /*   //Data from state
-           const isEmployeeBeenSelected = useSelector<AppRootStateType, boolean>(state => state.app.isEmployeeSelected)
-           const empPassword = useSelector<AppRootStateType, number>(state => state.employees.selectedEmployee.password)
-           const selectedEmployee = useSelector<AppRootStateType, EmployeeType>((state) => state.employees.selectedEmployee)
-           console.log(selectedEmployee)
-           //hooks
-           // Logic
-           useEffect(() => {
-               selectedEmployee.isLoggedIn ? navigate('/employee-menu') : navigate('/employee-password')
-           }, [selectedEmployee.isLoggedIn])
+        //Data from state
+        const selectedEmployee = useSelector<AppRootStateType, EmployeeType>((state) => state.employees.selectedEmployee)
+        console.log(selectedEmployee)
 
-           const checkPassword = useCallback((password: string | undefined) => {
-               if (password === empPassword.toString()) {
-                   dispatch(employeesActions.changeLoginInStatus({isLoginIn: true}))
-               }
-           }, [isEmployeeBeenSelected, selectedEmployee.isLoggedIn])*/
 
         return (
             <div>
                 <Routes>
-                    <Route path={'/'} element={<div>Select one</div>}/>
                     <Route path={'/employee-menu'} element={<Menu/>}/>
                     <Route path={'/employee-password'} element={<LoginPassword onSubmit={() => {
                     }}/>}/>
