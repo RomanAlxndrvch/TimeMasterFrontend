@@ -32,8 +32,6 @@ const App = memo(function () {
             if (selectedEmployee.password === +password) navigate('/employee-menu')
             dispatch(appActions.changeIsEmployeeBeenSelected({status: false}))
         }
-
-
     }
 
     return (

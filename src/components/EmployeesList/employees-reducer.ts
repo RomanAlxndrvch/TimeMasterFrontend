@@ -44,10 +44,11 @@ export const fetchAllEmployees = (): AppThunk => (dispatch) => {
 }
 
 export const fetchSelectedEmployee = (id: string): AppThunk => async (dispatch) => {
+    dispatch(appActions.changeIsEmployeeBeenSelected({status: true})) //test. Maybe need swap
     try {
         const res = await allEmployeesAPI.getEmployeeById(id)
         dispatch(employeesActions.selectedEmployee(res.data.data))
-        dispatch(appActions.changeIsEmployeeBeenSelected({status: true}))
+        //dispatch(appActions.changeIsEmployeeBeenSelected({status: true})) //test.     dispatch(appActions.changeIsEmployeeBeenSelected({status: true}))
     } catch (e) {
         console.log(e)
     }
