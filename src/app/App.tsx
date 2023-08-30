@@ -6,7 +6,6 @@ import {fetchAllEmployees} from "components/EmployeesList/employees-reducer";
 import {EmployeesList} from "components/EmployeesList/EmployeesList";
 import {LinearProgress} from "@mui/material";
 import classes from './App.module.css'
-import {EmployeeMainMenu} from "components/EmployeeMainMenu/EmployeeMainMenu";
 import {LoginPassword} from "components/LoginPassword/LoginPassword";
 import {EmployeeType} from "utils/types";
 import {Route, Routes, useNavigate} from "react-router-dom";
@@ -44,7 +43,7 @@ const App = memo(function () {
                 {isEmployeeSelected && <LoginPassword onSubmit={onSubmit}/>}
 
                 <Routes>
-                    <Route path={'/'} element={isEmployeeSelected ? <div></div> : <div>Select One</div>}/>
+                    <Route path={'/'} element={!isEmployeeSelected && <div>Select One</div>}/>
                     <Route path={'/employee-menu'} element={<Menu/>}/>
                 </Routes>
             </div>
