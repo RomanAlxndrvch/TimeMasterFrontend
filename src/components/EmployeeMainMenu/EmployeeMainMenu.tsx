@@ -18,7 +18,9 @@ export const EmployeeMainMenu = memo(function () {
   const selectedEmployee = useSelector<AppRootStateType, EmployeeType>(
     (state) => state.employees.selectedEmployee
   );
+
   console.log(selectedEmployee);
+  console.log('1');
 
   return (
     <div>
@@ -26,7 +28,7 @@ export const EmployeeMainMenu = memo(function () {
         <Route path={'/employee-menu'} element={<Menu />} />
         <Route
           path={'/employee-password'}
-          element={<LoginPassword onSubmit={() => {}} />}
+          // element={<LoginPassword onSubmit={() => {}} />}
         />
       </Routes>
     </div>
