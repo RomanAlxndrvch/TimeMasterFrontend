@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import classes from '../EmployeesList/EmployeesList.module.css';
 import { Button, List } from '@mui/material';
 import { useSelector } from 'react-redux';

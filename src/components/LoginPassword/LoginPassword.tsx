@@ -5,6 +5,7 @@ import { IFormInput } from 'utils/types';
 import * as yup from 'yup';
 import classes from './LoginPassword.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { join } from 'path';
 
 type LoginPasswordPropsType = {
   password: number;
@@ -18,7 +19,12 @@ export const LoginPassword = React.memo(function (
 
   const schema = yup
     .object({
-      password: yup.string().min(4).matches(/props/, { message: 'wrong' }), //! NOT DONE YET
+      password: yup
+        .string()
+        .min(4, 'Password to short')
+        .matches(new RegExp(`^${props.password.toString()}+$`), {
+          message: 'wrong password',
+        }), //! NOT DONE YET
     })
     .required();
 
@@ -46,9 +52,7 @@ export const LoginPassword = React.memo(function (
           render={({ field }) => (
             <TextField
               {...field}
-              label={
-                errors.password?.message /*? 'Password to short' : 'Password'*/
-              }
+              label={errors.password?.message}
               error={!!errors.password?.message}
               variant="standard"
               type={'password'}
